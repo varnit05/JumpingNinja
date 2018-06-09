@@ -33,8 +33,11 @@ public class JumpingNinja extends JPanel {
 
 		frame.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		NinjaGamePanel game = new NinjaGamePanel();
+		frame.addKeyListener(game);
 		frame.add(game);
 		frame.pack();
+		
+	
 	}
 
 }
