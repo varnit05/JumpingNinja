@@ -16,6 +16,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
+	Ninja ninja = new Ninja(250, 700, 50, 50);
 	Timer timer;
 	
 
@@ -119,7 +120,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 
 	private void updateGameState() {
 		// TODO Auto-generated method stub
-		
+		ninja.update();
 	}
 
 	private void updateMenuState() {
