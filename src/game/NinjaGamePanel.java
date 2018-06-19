@@ -16,14 +16,23 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
-	Ninja ninja = new Ninja(250, 700, 50, 50);
-	Zombies zombie = new Zombies(250, 700, 50, 50);
+	Ninja ninja;
 	Timer timer;
-	
+	NinjaObjectManager nom; 
+	int jstate;
+	private final int jup = 1;
+	private final int jacross=2;
+	private final int jdown=3;
+	Zombies zombie;
 
 	public NinjaGamePanel() {
-		timer = new Timer(1000 / 60, this);
+		timer = new Timer(1000 / 15, this);
 		timer.start();
+		ninja =new Ninja(250, 700, 50, 50);
+		nom = new NinjaObjectManager(ninja);
+		zombie = new Zombies(250, 700, 50, 50);
+		nom.addZombies(zombie);
+		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -55,7 +64,26 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 			
 		}
 		}
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+	
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			jstate = jup;
+			ninja.jump1();
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			ninja.Movedown();
+
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			ninja.Moveright();
+
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			ninja.Moveleft();
+
+		}
+
+		System.out.println("With The");
 	}
+	
 
 	private void drawMenuState(Graphics g) {
 		// TODO Auto-generated method stub
@@ -80,6 +108,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	
 		g.fillRect(0, 0, JumpingNinja.WIDTH, JumpingNinja.HEIGHT);
 		g.setColor(Color.BLACK);
+		nom.draw(g);
 	}
 
 	private void drawEndState(Graphics g) {
@@ -92,7 +121,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 		g.setFont(new Font("Arial", Font.PLAIN, 70));
 		g.drawString("GAME OVER", 760, 300);
 	
-		g.drawString("You Killed __ enemies ", 600, 550);
+		g.drawString("You reached ___Meter", 600, 550);
 		g.drawString("Press Enter to restart ", 630, 750);
 
 	}
@@ -110,6 +139,16 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 
 		if (currentState == END_STATE) {
 			updateEndState();
+		}
+		if (jstate == jup) {
+			jstate = jacross;
+			ninja.jump2();
+		}
+		else if (jstate == jacross) {
+			jstate = jdown;
+			ninja.jump3();
+			jstate = 0;
+			
 		}
 		repaint();
 	

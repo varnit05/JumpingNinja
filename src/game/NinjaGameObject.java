@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class NinjaGameObject {
@@ -7,6 +8,7 @@ public class NinjaGameObject {
 	int y;
 	int width;
 	int height;
+	
 
 	public NinjaGameObject(int x, int y, int width, int height) {
 		this.x = x;
@@ -15,12 +17,13 @@ public class NinjaGameObject {
 		this.width = width;
 	}
 
-	void Update() {
+	void update() {
 
 	}
 
-	void Draw(Graphics g) {
-
+	void draw(Graphics g) {
+		g.setColor(Color.BLUE);
+		g.drawRect( x, y, width, height);
 	}
 }
 

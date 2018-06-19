@@ -1,67 +1,63 @@
+package game;
 
-	import java.awt.Graphics;
-	import java.util.ArrayList;
-	import java.util.Random;
+import java.awt.Graphics;
 
-	public class NinjaObjectManager {
+import java.util.ArrayList;
+import java.util.Random;
 
-		long enemyTimer;
-		int enemySpawnTime = 700;
-	
-		int score = 0;
+public class NinjaObjectManager {
 
-		int getScore() {
-			return score;
+	long enemyTimer;
+	int enemySpawnTime = 700;
+	Ninja ninja;
+	int score = 0;
 
+	int getScore() {
+		return score;
+
+	}
+
+	ArrayList<Zombies> zombiesList;
+
+	public NinjaObjectManager(Ninja ninja) {
+		zombiesList = new ArrayList<Zombies>();
+		this.ninja = ninja;
+		
+
+	}
+
+	public void update() {
+
+		for (Zombies a : zombiesList) {
+			a.update();
 		}
 
-		ArrayList<Zombies> ZombiesList = new ArrayList<Zombies>();
+	}
 
+	public void draw(Graphics g) {
 
-		public NinjaObjectManager() {
-			this.ZombiesList = ZombiesList;
-
+		for (Zombies a : zombiesList) {
+			a.draw(g);
 		}
+		ninja.draw(g);
 
-		public void update() {
-	
-			for (Zombies a : ZombiesList) {
-				a.update();
-			}
+	}
 
-		}
+	void addAlien(Zombies a) {
+		zombiesList.add(a);
 
-		public void draw(Graphics g) {
-	
-			for (Zombies a: ZombiesList) {
-				a.draw(g);
-			}
+	}
 
-		}
+	public void manageEnemies() {
+		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
+			addZombies(new Zombies(new Random().nextInt(NinjaGamePanel.WIDTH), 0, 80, 80));
 
-
-
-	
-
-		void addAlien(Zombies a) {
-			ZombiesList.add(a);
-
-		}
-
-		public void manageEnemies() {
-			if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-				addZombies(new Zombies(new Random().nextInt(NinjaGamePanel.WIDTH), 0, 80, 80));
-
-				enemyTimer = System.currentTimeMillis();
-			}
-		}
-
-		private void addZombies(Zombies zombies) {
-			// TODO Auto-generated method stub
-			
+			enemyTimer = System.currentTimeMillis();
 		}
 	}
 
-	
-
-	
+        void addZombies(Zombies zombies) {
+		// TODO Auto-generated method stub
+        	zombiesList.add(zombies);
+	}
+}

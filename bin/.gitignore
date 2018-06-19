@@ -1,1 +1,6 @@
 /game/
+/JumpingNinja.class
+/Ninja.class
+/NinjaGameObject.class
+/NinjaGamePanel.class
+/NinjaObjectManager.class
