@@ -8,9 +8,8 @@ public class Ninja extends NinjaGameObject {
 	int speed;
 
 	void draw(Graphics g) {
-		g.setColor(Color.BLUE);
+		g.drawImage(NinjaGamePanel.ninjaImg, x, y, width, height, null);
 
-		g.fillRect(x, y, height, width);
 
 	}
 
@@ -46,13 +45,29 @@ public class Ninja extends NinjaGameObject {
 		// TODO Auto-generated method stub
 
 	}
-	public void jump1( ) {
+
+	public void jump1() {
 		y -= speed;
 	}
-	public void jump2( ) {
+
+	public void jump2() {
 		x += speed;
 	}
-	public void jump3( ) {
+
+	public void jump3() {
 		y += speed;
+	}
+
+
+	public void duck1() {
+		y += speed;
+	}
+
+	public void duck2() {
+		x += speed;
+	}
+
+	public void duck3() {
+		y-= speed;
 	}
 }

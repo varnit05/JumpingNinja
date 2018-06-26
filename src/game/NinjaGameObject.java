@@ -15,6 +15,7 @@ public class NinjaGameObject {
 		this.y = y;
 		this.height = height;
 		this.width = width;
+		
 	}
 
 	void update() {

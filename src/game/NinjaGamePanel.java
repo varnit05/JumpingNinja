@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -20,20 +23,45 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	Timer timer;
 	NinjaObjectManager nom; 
 	int jstate;
+	int dstate;
 	private final int jup = 1;
 	private final int jacross=2;
 	private final int jdown=3;
+	
+	private final int ddown = 1;
+	private final int dacross=2;
+	private final int dup=3;
 	Zombies zombie;
+    public static BufferedImage rainforestImg;
+    public static BufferedImage zombieImg;
+    public static BufferedImage ninjaImg;
+
 
 	public NinjaGamePanel() {
 		timer = new Timer(1000 / 15, this);
 		timer.start();
-		ninja =new Ninja(250, 700, 50, 50);
+		ninja =new Ninja(250, 700, 120, 120);
 		nom = new NinjaObjectManager(ninja);
-		zombie = new Zombies(250, 700, 50, 50);
+		zombie = new Zombies(250, 700, 120, 120);
 		nom.addZombies(zombie);
+	      try {
+
+	            zombieImg = ImageIO.read(this.getClass().getResourceAsStream("zombie.gif"));
+
+	            ninjaImg = ImageIO.read(this.getClass().getResourceAsStream("ninja.gif"));
+
+	            rainforestImg = ImageIO.read(this.getClass().getResourceAsStream("rainforest.gif"));
+
+	    } catch (IOException e) {
+
+	            // TODO Auto-generated catch block
+
+	            e.printStackTrace();
+
+	    }
+		}
+
 		
-	}
 
 	public void paintComponent(Graphics g) {
 		draw(g);
@@ -68,11 +96,16 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			jstate = jup;
-			ninja.jump1();
+			
+			if(ninja.y == 700) {
+				jstate = jup;
+				ninja.jump1();
+			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			ninja.Movedown();
-
+			if(ninja.y == 700) {
+				dstate = ddown;
+				ninja.duck1();
+			}
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			ninja.Moveright();
 
@@ -105,9 +138,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 
 	private void drawGameState(Graphics g) {
 		// TODO Auto-generated method stub
-	
-		g.fillRect(0, 0, JumpingNinja.WIDTH, JumpingNinja.HEIGHT);
-		g.setColor(Color.BLACK);
+		g.drawImage(NinjaGamePanel.rainforestImg, 0, 0, NinjaGamePanel.WIDTH, NinjaGamePanel.HEIGHT, null);
 		nom.draw(g);
 	}
 
@@ -140,6 +171,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 		if (currentState == END_STATE) {
 			updateEndState();
 		}
+
 		if (jstate == jup) {
 			jstate = jacross;
 			ninja.jump2();
@@ -148,6 +180,16 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 			jstate = jdown;
 			ninja.jump3();
 			jstate = 0;
+			
+		}
+		if (dstate == ddown) {
+			dstate = dacross;
+			ninja.duck2();
+		}
+		else if (dstate == dacross) {
+			dstate = dup;
+			ninja.duck3();
+			dstate = 0;
 			
 		}
 		repaint();
