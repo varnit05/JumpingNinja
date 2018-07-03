@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 public class JumpingNinja extends JPanel {
 	public JFrame frame;
 	
-	public static final int WIDTH = 2000;
-	public static final int HEIGHT = 3000;
+	public static final int WIDTH = 2600;
+	public static final int HEIGHT = 1400;
 
 
 	public static void main(String[] args) {

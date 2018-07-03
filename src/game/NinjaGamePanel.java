@@ -40,17 +40,16 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	public NinjaGamePanel() {
 		timer = new Timer(1000 / 15, this);
 		timer.start();
-		ninja =new Ninja(250, 700, 120, 120);
+		ninja =new Ninja(250, 700, 250, 250);
 		nom = new NinjaObjectManager(ninja);
-		zombie = new Zombies(250, 700, 120, 120);
-		nom.addZombies(zombie);
+
 	      try {
 
 	            zombieImg = ImageIO.read(this.getClass().getResourceAsStream("zombie.gif"));
 
 	            ninjaImg = ImageIO.read(this.getClass().getResourceAsStream("ninja.gif"));
 
-	            rainforestImg = ImageIO.read(this.getClass().getResourceAsStream("rainforest.gif"));
+	            rainforestImg = ImageIO.read(this.getClass().getResourceAsStream("rainforest.jpg"));
 
 	    } catch (IOException e) {
 
@@ -138,7 +137,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 
 	private void drawGameState(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(NinjaGamePanel.rainforestImg, 0, 0, NinjaGamePanel.WIDTH, NinjaGamePanel.HEIGHT, null);
+		g.drawImage(NinjaGamePanel.rainforestImg, NinjaGamePanel.WIDTH, NinjaGamePanel.HEIGHT,null);
 		nom.draw(g);
 	}
 
@@ -203,6 +202,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	private void updateGameState() {
 		// TODO Auto-generated method stub
 		ninja.update();
+		nom.update();
 	}
 
 	private void updateMenuState() {

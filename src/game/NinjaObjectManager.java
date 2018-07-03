@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class NinjaObjectManager {
 
-	long enemyTimer;
+	long enemyTimer = 0;
 	int enemySpawnTime = 700;
 	Ninja ninja;
 	int score = 0;
@@ -27,7 +27,8 @@ public class NinjaObjectManager {
 	}
 
 	public void update() {
-
+	
+		manageEnemies();
 		for (Zombies a : zombiesList) {
 			a.update();
 		}
@@ -43,21 +44,21 @@ public class NinjaObjectManager {
 
 	}
 
-	void addAlien(Zombies a) {
-		zombiesList.add(a);
 
-	}
 
 	public void manageEnemies() {
+		System.out.println(System.currentTimeMillis() - enemyTimer);
+		System.out.println();
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			addZombies(new Zombies(new Random().nextInt(NinjaGamePanel.WIDTH), 0, 80, 80));
+			addZombies(new Zombies(new Random().nextInt(NinjaGamePanel.WIDTH), 120, 200, 200));
 
 			enemyTimer = System.currentTimeMillis();
+			System.out.println("h");
 		}
 	}
+	void addZombies(Zombies a) {
+		zombiesList.add(a);
 
-        void addZombies(Zombies zombies) {
-		// TODO Auto-generated method stub
-        	zombiesList.add(zombies);
+
 	}
 }
