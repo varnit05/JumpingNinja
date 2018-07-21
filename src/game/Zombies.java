@@ -12,14 +12,17 @@ public class Zombies extends NinjaGameObject {
 	}
 
 	void update() {
-		// collisionBox.setBounds(x, y, width, height);
+	
+		x-= 10;
 		super.update();
-		y++;
+
 	}
 
 		
 	   void draw(Graphics g) {
-			g.drawImage(NinjaGamePanel.zombieImg, x, y, width, height, null);
+			g.drawImage(NinjaGamePanel.zombieImg,x, y, width, height, null);
+			g.setColor(Color.BLUE);
+			g.drawRect( collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 		}
 
 	}

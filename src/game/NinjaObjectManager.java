@@ -8,16 +8,16 @@ import java.util.Random;
 public class NinjaObjectManager {
 
 	long enemyTimer = 0;
-	int enemySpawnTime = 700;
+	int enemySpawnTime = 4000;
 	Ninja ninja;
 	int score = 0;
-
+	Random x = new Random();
 	int getScore() {
 		return score;
 
 	}
 
-	ArrayList<Zombies> zombiesList;
+static	ArrayList<Zombies> zombiesList;
 
 	public NinjaObjectManager(Ninja ninja) {
 		zombiesList = new ArrayList<Zombies>();
@@ -50,7 +50,7 @@ public class NinjaObjectManager {
 		System.out.println(System.currentTimeMillis() - enemyTimer);
 		System.out.println();
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			addZombies(new Zombies(new Random().nextInt(NinjaGamePanel.WIDTH), 120, 200, 200));
+			addZombies(new Zombies(JumpingNinja.WIDTH-100, 150*x.nextInt(2) + 650, 140, 140));
 
 			enemyTimer = System.currentTimeMillis();
 			System.out.println("h");

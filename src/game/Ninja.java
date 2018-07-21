@@ -9,7 +9,8 @@ public class Ninja extends NinjaGameObject {
 
 	void draw(Graphics g) {
 		g.drawImage(NinjaGamePanel.ninjaImg, x, y, width, height, null);
-
+		g.setColor(Color.BLUE);
+		g.drawRect( collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 
 	}
 
@@ -17,7 +18,7 @@ public class Ninja extends NinjaGameObject {
 
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
-		speed = 185;
+		speed = 335;
 	}
 
 	public void Moveup() {
@@ -43,7 +44,13 @@ public class Ninja extends NinjaGameObject {
 
 	public void update() {
 		// TODO Auto-generated method stub
-
+		for(Zombies z: NinjaObjectManager.zombiesList) {
+			if(z.collisionBox.intersects(collisionBox)) {
+				NinjaGamePanel.currentState = NinjaGamePanel.END_STATE;
+				NinjaGamePanel.endTime= System.currentTimeMillis();
+			}
+		}
+		super.update();
 	}
 
 	public void jump1() {

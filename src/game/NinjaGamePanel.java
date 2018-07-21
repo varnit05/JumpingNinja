@@ -15,10 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class NinjaGamePanel extends JPanel implements ActionListener, KeyListener {
-	final int MENU_STATE = 0;
-	final int GAME_STATE = 1;
-	final int END_STATE = 2;
-	int currentState = MENU_STATE;
+	public static long endTime;
+	static final int MENU_STATE = 0;
+	static final int GAME_STATE = 1;
+	static final int END_STATE = 2;
+	static int currentState = MENU_STATE;
 	Ninja ninja;
 	Timer timer;
 	NinjaObjectManager nom; 
@@ -40,7 +41,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	public NinjaGamePanel() {
 		timer = new Timer(1000 / 15, this);
 		timer.start();
-		ninja =new Ninja(250, 700, 250, 250);
+		ninja =new Ninja(250, 700, 175, 175);
 		nom = new NinjaObjectManager(ninja);
 
 	      try {
@@ -151,7 +152,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 		g.setFont(new Font("Arial", Font.PLAIN, 70));
 		g.drawString("GAME OVER", 760, 300);
 	
-		g.drawString("You reached ___Meter", 600, 550);
+		g.drawString("You survived" +  ( endTime- JumpingNinja.startTime )/1000 +"seconds", 600, 550);
 		g.drawString("Press Enter to restart ", 630, 750);
 
 	}
