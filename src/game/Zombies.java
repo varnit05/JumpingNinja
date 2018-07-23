@@ -13,7 +13,7 @@ public class Zombies extends NinjaGameObject {
 
 	void update() {
 	
-		x-= 10;
+		x-= 20;
 		super.update();
 
 	}
@@ -21,9 +21,7 @@ public class Zombies extends NinjaGameObject {
 		
 	   void draw(Graphics g) {
 			g.drawImage(NinjaGamePanel.zombieImg,x, y, width, height, null);
-			g.setColor(Color.BLUE);
-			g.drawRect( collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
-		}
+	   }
 
 	}
 

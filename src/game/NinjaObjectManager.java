@@ -8,7 +8,7 @@ import java.util.Random;
 public class NinjaObjectManager {
 
 	long enemyTimer = 0;
-	int enemySpawnTime = 4000;
+	int enemySpawnTime = 3000;
 	Ninja ninja;
 	int score = 0;
 	Random x = new Random();
@@ -50,7 +50,7 @@ static	ArrayList<Zombies> zombiesList;
 		System.out.println(System.currentTimeMillis() - enemyTimer);
 		System.out.println();
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			addZombies(new Zombies(JumpingNinja.WIDTH-100, 150*x.nextInt(2) + 650, 140, 140));
+			addZombies(new Zombies(JumpingNinja.WIDTH-100, 150*x.nextInt(2) + 650, 120, 200));
 
 			enemyTimer = System.currentTimeMillis();
 			System.out.println("h");

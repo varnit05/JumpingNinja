@@ -9,9 +9,7 @@ public class Ninja extends NinjaGameObject {
 
 	void draw(Graphics g) {
 		g.drawImage(NinjaGamePanel.ninjaImg, x, y, width, height, null);
-		g.setColor(Color.BLUE);
-		g.drawRect( collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
-
+		
 	}
 
 	public Ninja(int x, int y, int width, int height) {
