@@ -16,7 +16,7 @@ public class Ninja extends NinjaGameObject {
 
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
-		speed = 335;
+		speed = 300;
 	}
 
 	public void Moveup() {

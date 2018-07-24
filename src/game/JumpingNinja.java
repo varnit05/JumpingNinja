@@ -6,12 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class JumpingNinja extends JPanel {
-	public static final long startTime = System.currentTimeMillis();
+	
 	
 	public JFrame frame;
 	
 	public static final int WIDTH = 1900;
-	public static final int HEIGHT = 1400;
+	public static final int HEIGHT = 1000;
 
 
 	public static void main(String[] args) {

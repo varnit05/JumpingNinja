@@ -13,7 +13,7 @@ public class Zombies extends NinjaGameObject {
 
 	void update() {
 	
-		x-= 20;
+		x-= 30;
 		super.update();
 
 	}

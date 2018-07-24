@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class NinjaObjectManager {
-
+	public static long startTime;
 	long enemyTimer = 0;
-	int enemySpawnTime = 3000;
+	int enemySpawnTime = 2000;
 	Ninja ninja;
 	int score = 0;
 	Random x = new Random();
@@ -22,6 +22,7 @@ static	ArrayList<Zombies> zombiesList;
 	public NinjaObjectManager(Ninja ninja) {
 		zombiesList = new ArrayList<Zombies>();
 		this.ninja = ninja;
+		startTime = System.currentTimeMillis();
 		
 
 	}
@@ -50,7 +51,7 @@ static	ArrayList<Zombies> zombiesList;
 		System.out.println(System.currentTimeMillis() - enemyTimer);
 		System.out.println();
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			addZombies(new Zombies(JumpingNinja.WIDTH-100, 150*x.nextInt(2) + 650, 120, 200));
+			addZombies(new Zombies(JumpingNinja.WIDTH-100, 150*x.nextInt(2) + 400, 120, 200));
 
 			enemyTimer = System.currentTimeMillis();
 			System.out.println("h");

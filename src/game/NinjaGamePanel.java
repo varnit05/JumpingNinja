@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -41,7 +42,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	public NinjaGamePanel() {
 		timer = new Timer(1000 / 15, this);
 		timer.start();
-		ninja =new Ninja(250, 700, 175, 175);
+		ninja =new Ninja(250, 470, 175, 175);
 		nom = new NinjaObjectManager(ninja);
 
 	      try {
@@ -87,22 +88,26 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 			System.out.println("hi");
 			currentState++;
 			if (currentState > END_STATE) {
-
+				ninja =new Ninja(250, 470, 175, 175);
+				nom = new NinjaObjectManager(ninja);
 				currentState = MENU_STATE;
+				nom.score = 0;
 			
 		}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-	
+			JOptionPane.showMessageDialog(null,"the goal of the game is to jump or duck to avoid getting hit by the zombies. To jump you have to press the up arrow, to duck you have to hit the down arrow. Also you can move back and forth with the left and right arrow. GOOD LUCK!!!!!");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			
-			if(ninja.y == 700) {
+			if(ninja.y == 470) {
+				System.out.println("hi");
 				jstate = jup;
 				ninja.jump1();
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			if(ninja.y == 700) {
+			if(ninja.y == 470) {
+				System.out.println("yo");
 				dstate = ddown;
 				ninja.duck1();
 			}
@@ -113,6 +118,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 			ninja.Moveleft();
 
 		}
+	
 
 		System.out.println("With The");
 	}
@@ -152,7 +158,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 		g.setFont(new Font("Arial", Font.PLAIN, 70));
 		g.drawString("GAME OVER", 760, 300);
 	
-		g.drawString("You survived" +  ( endTime- JumpingNinja.startTime )/1000 +"seconds", 600, 550);
+		g.drawString("You survived" +  ( endTime- NinjaObjectManager.startTime )/1000 +"seconds", 600, 550);
 		g.drawString("Press Enter to restart ", 630, 750);
 
 	}
