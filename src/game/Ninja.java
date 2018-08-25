@@ -6,15 +6,17 @@ import java.awt.Graphics;
 
 public class Ninja extends NinjaGameObject {
 	int speed;
+	NinjaGamePanel gamePanel;
 
 	void draw(Graphics g) {
 		g.drawImage(NinjaGamePanel.ninjaImg, x, y, width, height, null);
 		
 	}
 
-	public Ninja(int x, int y, int width, int height) {
-
+	public Ninja(int x, int y, int width, int height, NinjaGamePanel gamePanel) {
+		
 		super(x, y, width, height);
+		this.gamePanel = gamePanel;
 		// TODO Auto-generated constructor stub
 		speed = 300;
 	}
@@ -44,8 +46,7 @@ public class Ninja extends NinjaGameObject {
 		// TODO Auto-generated method stub
 		for(Zombies z: NinjaObjectManager.zombiesList) {
 			if(z.collisionBox.intersects(collisionBox)) {
-				NinjaGamePanel.currentState = NinjaGamePanel.END_STATE;
-				NinjaGamePanel.endTime= System.currentTimeMillis();
+			gamePanel.GameOver();
 			}
 		}
 		super.update();
