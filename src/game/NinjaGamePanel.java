@@ -38,7 +38,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	private final int dacross = 2;
 	private final int dup = 3;
 	Zombies zombie;
-	public static BufferedImage rainforestImg;
+	public static BufferedImage backgroundImg;
 	public static BufferedImage zombieImg;
 	public static BufferedImage ninjaImg;
 
@@ -54,7 +54,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 
 			ninjaImg = ImageIO.read(this.getClass().getResourceAsStream("ninja.gif"));
 
-			rainforestImg = ImageIO.read(this.getClass().getResourceAsStream("rainforest.jpg"));
+			backgroundImg = ImageIO.read(this.getClass().getResourceAsStream("background.jpg"));
 
 		} catch (IOException e) {
 
@@ -158,7 +158,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 
 	private void drawGameState(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(NinjaGamePanel.rainforestImg, NinjaGamePanel.WIDTH, NinjaGamePanel.HEIGHT, null);
+		g.drawImage(NinjaGamePanel.backgroundImg, NinjaGamePanel.WIDTH, NinjaGamePanel.HEIGHT, null);
 		nom.draw(g);
 	}
 
@@ -172,7 +172,7 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 		g.setFont(new Font("Arial", Font.PLAIN, 70));
 		g.drawString("GAME OVER", 760, 300);
 
-		g.drawString("You survived" + (endTime - NinjaObjectManager.startTime) / 1000 + "seconds", 600, 550);
+		g.drawString("You survived " + (endTime - NinjaObjectManager.startTime) / 1000 + " seconds", 600, 550);
 		g.drawString("Press Enter to restart ", 630, 750);
 
 	}
