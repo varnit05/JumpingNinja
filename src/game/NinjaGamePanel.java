@@ -165,10 +165,10 @@ public class NinjaGamePanel extends JPanel implements ActionListener, KeyListene
 	private void drawEndState(Graphics g) {
 		// TODO Auto-generated method stub
 
-		g.setColor(Color.RED);
+		g.setColor(Color.darkGray);
 		g.fillRect(0, 0, JumpingNinja.WIDTH, JumpingNinja.HEIGHT);
 
-		g.setColor(Color.GRAY);
+		g.setColor(Color.GREEN);
 		g.setFont(new Font("Arial", Font.PLAIN, 70));
 		g.drawString("GAME OVER", 760, 300);
 
